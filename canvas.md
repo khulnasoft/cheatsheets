@@ -1,140 +1,253 @@
+HTML Canvas 备忘清单
+===
+
+这份 HTML Canvas 快速参考备忘单列出了常见的 HTML5 Canvas 设计标签，以易读的格式呈现。
+
+入门
 ---
-title: Canvas
-category: JavaScript
+<!--rehype:body-class=cols-4-->
+
+### 基本设置
+<!--rehype:wrap-class=col-span-2-->
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Canvas 示例</title>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="500" height="400"
+      style="border:1px solid #000000;">
+    </canvas>
+    <script src="script.js"></script>
+  </body>
+</html>
+```
+
+### 获取上下文
+<!--rehype:wrap-class=col-span-2-->
+
+```js
+const canvas = document.getElementById("myCanvas");
+
+const ctx = canvas.getContext("2d");
+```
+
+绘制形状
 ---
 
-### Getting the context
+### 矩形
+<!--rehype:wrap-class=col-span-2-->
 
 ```js
-var canvas = document.getElementById('c')
-var c = canvas.getContext('2d')
+ctx.fillStyle = "red";
+ctx.fillRect(10, 10, 150, 100); // x, y, 宽度, 高度
+
+ctx.strokeStyle = "blue";
+ctx.lineWidth = 5;
+ctx.strokeRect(200, 10, 150, 100); // x, y, 宽度, 高度
+
+ctx.clearRect(15, 15, 30, 30); // x, y, 宽度, 高度
 ```
 
-### Basic drawing
+路径
+---
+
+### 线条
 
 ```js
-// x = 10, y = 20, width = 200, height = 100
-c.fillStyle = '#ff0000'
-c.strokeStyle = '#ff00ff'
+ctx.beginPath();
+ctx.moveTo(50, 50); // 起始点
+ctx.lineTo(200, 50); // 结束点
+ctx.lineTo(200, 200); // 下一个线条结束点
+ctx.closePath(); // 将结束点连接到起始点
+ctx.stroke();
 ```
 
+### 圆形
+
 ```js
-c.lineWidth = 5
-c.lineCap = 'round'
+ctx.beginPath();
+// x, y, 半径, 起始角度, 结束角度
+ctx.arc(150, 150, 75, 0, 2 * Math.PI);
+ctx.fillStyle = "green";
+ctx.fill();
+ctx.stroke();
 ```
 
+### 弧
+
 ```js
-c.fillRect(10, 20, 200, 100)
+ctx.beginPath();
+// x, y, 半径, 起始角度, 结束角度
+ctx.arc(150, 150, 75, 0, Math.PI);
+ctx.stroke();
 ```
 
+贝塞尔曲线和二次曲线
+---
+
+### 二次曲线
+
 ```js
-c.stroke()
-c.fill()
+ctx.beginPath();
+ctx.moveTo(50, 250);
+// cpX, cpY, 终点X, 终点Y
+ctx.quadraticCurveTo(200, 100, 400, 250); 
+ctx.stroke();
 ```
 
-### Saving and restoring
+### 贝塞尔曲线
 
 ```js
-c.save()
+ctx.beginPath();
+ctx.moveTo(50, 300);
+// cp1X, cp1Y, cp2X, cp2Y, 终点X, 终点Y
+ctx.bezierCurveTo(150, 100, 350, 500, 450, 300); 
+ctx.stroke();
 ```
 
+### 文本
+
 ```js
-c.restore()
+ctx.font = "30px Arial";
+ctx.fillStyle = "black";
+// 文本, x, y
+ctx.fillText("Hello Canvas", 10, 50); 
+// 文本, x, y
+ctx.strokeText("Hello Canvas", 10, 100); 
 ```
 
-Saves: `strokeStyle` `fillStyle` `globalAlpha` `lineWidth` `lineCap` `lineJoin` `miterLimit` `shadowOffsetX` `shadowOffsetY` `shadowBlur` `shadowColor`
-`globalCompositeOperation`, Transformations (`translate` `rotate` `scale` `transform` `setTransform`), Clipping path
-
-
-### Animation
+### 图像
+<!--rehype:wrap-class=col-span-3-->
 
 ```js
-onframe: function() {
-  c.clearRect(0, 0, w, h)
+const img = new Image();
+img.src = "path/to/image.jpg";
+img.onload = () => {
+  ctx.drawImage(img, 10, 10); // img, x, y
+  ctx.drawImage(img, 50, 50, 100, 100); // img, x, y, 宽度, 高度
+  ctx.drawImage(img, 100, 100, 100, 100, 150, 150, 200, 200); // img, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight
+};
+```
+
+变换
+---
+
+### 平移
+
+```js
+ctx.translate(100, 100); // x, y
+ctx.fillRect(0, 0, 50, 50);
+```
+
+### 旋转
+
+```js
+// 角度（以弧度为单位）
+ctx.rotate((Math.PI / 180) * 45);
+ctx.fillRect(100, 100, 50, 50);
+```
+
+### 缩放
+
+```js
+ctx.scale(2, 2); // x, y
+ctx.fillRect(50, 50, 50, 50);
+```
+
+渐变
+---
+
+### 线性渐变
+<!--rehype:wrap-class=col-span-2-->
+
+```js
+const linearGradient = ctx.createLinearGradient(0, 0, 200, 0); // x0, y0, x1, y1
+linearGradient.addColorStop(0, "red");
+linearGradient.addColorStop(1, "blue");
+ctx.fillStyle = linearGradient;
+ctx.fillRect(10, 10, 200, 100);
+```
+
+### 径向渐变
+
+```js
+const radialGradient = ctx.createRadialGradient(75, 50, 5, 90, 60, 100); // x0, y0, r0, x1, y1, r1
+radialGradient.addColorStop(0, "red");
+radialGradient.addColorStop(1, "blue");
+ctx.fillStyle = radialGradient;
+ctx.fillRect(10, 10, 200, 100);
+```
+
+### 图案
+<!--rehype:wrap-class=col-span-2-->
+
+```js
+const img = new Image();
+img.src = "path/to/image.jpg";
+img.onload = () => {
+  // 'repeat', 'repeat-x', 'repeat-y', 'no-repeat'
+  const pattern = ctx.createPattern(img, "repeat");
+  ctx.fillStyle = pattern;
+  ctx.fillRect(0, 0, 300, 300);
+};
+```
+
+### 阴影
+
+```js
+ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+ctx.shadowBlur = 10;
+ctx.shadowOffsetX = 5;
+ctx.shadowOffsetY = 5;
+
+ctx.fillStyle = "red";
+ctx.fillRect(100, 100, 100, 100);
+```
+
+合成
+---
+
+### 全局透明度
+
+```js
+ctx.globalAlpha = 0.5;
+ctx.fillStyle = "red";
+ctx.fillRect(100, 100, 100, 100);
+
+ctx.fillStyle = "blue";
+ctx.fillRect(150, 150, 100, 100);
+```
+
+### 全局合成操作
+
+```js
+ctx.globalCompositeOperation = "source-over"; // 默认
+ctx.fillStyle = "red";
+ctx.fillRect(100, 100, 100, 100);
+
+ctx.globalCompositeOperation = "destination-over";
+ctx.fillStyle = "blue";
+ctx.fillRect(150, 150, 100, 100);
+```
+
+### 动画
+
+```js
+let x = 0;
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "blue";
+  ctx.fillRect(x, 100, 50, 50);
+  x += 2;
+  requestAnimationFrame(draw);
 }
+draw();
 ```
 
-### Transformations
+参考阅读
+---
 
-```js
-c.translate(0, 0)
-c.rotate(Math.PI*2/5)
-c.scale(1.0, 1.0)
-```
-
-To rotate along origin:
-
-```js
-c.translate(ox, oy)
-c.rotate(theta)
-c.translate(-ox, -oy)
-```
-
-To scale along origin:
-
-```js
-c.translate(-ox*x, -oy*y)
-c.scale(x, y)
-c.translate(ox/x, oy/y)
-```
-
-See [MDN: Transformations][xform].
-
-### Image drawing
-
-```js
-c.drawImage(image, dx, dy, [dw, dh]);
-/* `image` can be HTML Image/Canvas/Video */
-```
-
-See [MDN: Images][images].
-
-### Colors, styles shadows
-
-```js
-c.strokeStyle = '#ff00ff';
-c.fillStyle = '#ff00ff';
-```
-
-```js
-c.shadowOffsetX = 0;
-c.shadowOffsetY = 0;
-c.shadowOffsetBlur = 3.0;
-c.shadowColor = 'rgba(0,0,0,0.2)';
-```
-
-See [MDN: Styles][styles]
-
-### Gradients
-
-```js
-gr = c.createLinearGradient(x0,y0,x1,y1)
-gr = c.createRadialGradient(x0,y0,r0,x1,y1,r1)
-pat = c.createPattern(image, 'repeat-x')
-```
-
-```js
-c.fillStyle = gr
-```
-
-### Drawing
-
-```js
-c.beginPath()
-c.moveTo(x,y)
-c.lineTo(x,y)
-c.quadraticCurveTo(cpx,cpy,x,y)
-c.bezierCurveTo(cp1x,cp1y,cp2x,cp2y)
-c.arcTo(...)
-c.arc(...)
-c.closePath()
-```
-
-### More resources
-
-  * [Canvas Cheatsheet PDF][pdf]
-
-[pdf]: http://www.nihilogic.dk/labs/canvas_sheet/HTML5_Canvas_Cheat_Sheet.pdf
-[xform]: https://developer.mozilla.org/en-US/docs/Canvas_tutorial/Transformations
-[styles]: https://developer.mozilla.org/en-US/docs/Canvas_tutorial/Applying_styles_and_colors
-[images]: https://developer.mozilla.org/en-US/docs/Canvas_tutorial/Using_images
+- [MDN 文档](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
