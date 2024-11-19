@@ -1,144 +1,243 @@
----
-title: tmux
-category: CLI
-updated: 2024-04-08
----
+Tmux 备忘清单
+===
 
-### Commands
+最常用的快捷键和命令的 tmux 备忘单快速参考
 
-    $ tmux
-      -u        # UTF8 mode
-      -S ~/.tmux.socket
+Tmux CLI
+-------
 
-#### Sessions
+### 新会话
+<!--rehype:wrap-class=row-span-2-->
 
-    $ tmux new
-    $ tmux new -s session_name
+开始一个新的会话
 
-    $ tmux attach # Default session
-    $ tmux attach -t session_name
+```bash
+$ tmux
+$ tmux new
+$ tmux new-session
 
-    $ tmux switch -t session_name
-
-    $ tmux ls     # List sessions
-
-    $ tmux detach
-
-#### Windows
-
-    $ tmux new-window
-
-### Help
-
-    C-b ?
-
-### Scrolling
-
-    C-b [       # Enter scroll mode then press up and down, you can also scroll with mouse support enabled (`set -g mouse on` in `~/.tmux.conf`)
-
-### Copy/paste
-
-    C-b [       # 1. Enter scroll mode first
-    Space       # 2. Start selecting and move around
-    Enter       # 3. Press enter to copy
-    C-b ]       # Paste
-
-### Panes
-
-    C-b %       # vert
-    C-b "       # horiz
-    C-b hkjl    # navigation
-    C-b HJKL    # resize
-    C-b o       # next window
-    C-b q       # show pane numbers
-    C-b x       # close pane
-
-    C-b { or }  # move windows around
-
-### Windows
-
-    C-b c       # New window
-    C-b 1       # Go to window 1
-    C-b n       # Go to next window
-    C-b p       # Go to previous window
-    C-b w       # List all window
-
-### Detach/attach
-
-    C-b d       # Detach
-    C-b ( )     # Switch through sessions
-    $ tmux attach
-
-### Search in buffer
-
-    C-b [       # 1. Enter scroll mode first, you can also scroll with mouse support enabled
-    C-s         # 2. Enter search mode, type pattern then press Enter to start search
-    n or N      # 3. Go to the previous or next match
-    C-c         # 4. Exit search and scroll mode
-
-### Niceties
-
-    C-b t       # Display a clock, press any key to quit
-
-## Status formats
-
-```
-setw -g window-status-format `#[fg=8,bg=default]#I`
+:new
 ```
 
-See `message-command-style` in the man page.
+开始一个名为 myname 的新会话
 
-### Attribute/colors
+```bash
+$ tmux new -s myname
 
-| Key | Description |
-| --- | --- |
-| `#[fg=1]` | standard color |
-| `#[fg=yellow]` | yellow |
-| `#[bold]` | bold |
-| `#[fg=colour240]` | 256 color |
-| `#[fg=default]` | default |
-| `#[fg=1,bg=2]` | combinations |
-| `#[default]` | reset |
+:new -s myname
+```
 
-### Colors
+显示所有会话，或者 <kbd>Ctrl</kbd> + <kbd>b</kbd> + <kbd>s</kbd> 快捷键
 
- * `black` `red` `green` `yellow` `blue` `magenta` `cyan` `white`
- * `brightred` (and so on)
- * `colour0` ... `colour255`
- * `#333` (rgb hex)
+```bash
+$ tmux ls
+$ tmux list-sessions
+```
 
-### Attributes
+### 附加会话
+<!--rehype:wrap-class=row-span-2-->
 
- * `bold` `underscore` `blink` `noreverse` `hidden` `dim` `italics`
+附加到上一个会话
 
-### Variables
+```bash
+$ tmux a
+$ tmux at
+$ tmux attach
+$ tmux attach-session
+```
 
-| Key | Description |
-| --- | --- |
-| `#(date)` | shell command |
-| `#I` | window index |
-| `#S` | session name |
-| `#W` | window name |
-| `#F` | window flags |
-| `#H` | Hostname |
-| `#h` | Hostname, short |
-| `#D` | pane id |
-| `#P` | pane index |
-| `#T` | pane title |
+附加到命名
 
-## Options
+```bash
+$ tmux a -t myname
+```
 
-    set -g status-justify [left|centre|right]
-    set -g status-left '...'
+附加到名为 myname 的会话
 
-    setw -g window-status-style
-    setw -g window-status-activity-style
-    setw -g window-status-bell-style
-    setw -g window-status-content-style
-    setw -g window-status-current-style
-    setw -g window-status-last-style
+```bash
+$ tmux a -t myname
+$ tmux at -t myname
+$ tmux attach -t myname
+$ tmux attach-session -t myname
+```
 
-    setw -g window-status-format
-    setw -g window-status-current-format
+### 终止会话
 
-    setw -g window-status-separator
+按名称终止会话
+
+```bash
+$ tmux kill-ses -t myname # 杀死/删除会话
+$ tmux kill-session -t myname
+```
+
+杀死/删除除当前会话之外的所有会话
+
+```bash
+$ tmux kill-ses -a
+```
+
+杀死/删除除 myname 之外的所有会话
+
+```bash
+$ tmux kill-ses -a -t myname
+```
+
+### Tmux 帮助
+
+```bash
+$ tmux info
+```
+
+### 配置
+
+重新加载配置
+
+```bash
+$ tmux source-file ~/.tmu­x.conf
+```
+
+显示配置
+
+```bash
+$ tmux show-options -g
+```
+
+### 复制模式
+
+命令 | 描述
+:- | -
+`Ctrl+b` `[` | 进入复制模式
+`<Space>`    | 开始选择
+`Enter`      | 复制选择
+`q`          | 退出复制模式
+`Ctrl+b` `]` | 粘贴 buffer_0 的内容
+<!--rehype:className=shortcuts-->
+
+主要作用类似于在 [Vim](./vim.md#动作) 中选择文本
+
+Tmux 快捷键
+----------
+
+### 入门
+<!--rehype:style=background:rgb(245 158 11/1);-->
+
+快捷键/命令 | 描述
+:- | -
+| `Ctrl+b` `?` | List all shortcuts |
+<!--rehype:className=shortcuts show-header-->
+
+----
+
+显示每个会话、窗口、窗格等
+
+```bash
+$ tmux info
+```
+
+### 窗格（拆分）
+<!--rehype:wrap-class=row-span-2-->
+
+快捷键/命令 | 描述
+:- | -
+`Ctrl+b` `"` _/_ `%`   | 水平分割/垂直
+`Ctrl+b` `!`           | 窗格 -> 窗口
+`Ctrl+b` `x`           | 杀死窗格
+`Ctrl+b` \<Arrow>      | 导航窗格
+`Ctrl+b` \<Space>      | 切换布局
+`Ctrl+b` `{` _/_ `}`   | 向左/向右移动
+`Ctrl+b` `o`           | 转到下一个窗格
+`Ctrl+b` `z`           | 切换全屏
+`Ctrl+b` `;`           | 切换最后一个窗格
+`Ctrl+b` `q`           | 显示号码
+`Ctrl+b` `q` `0`...`9` | 转到 # 窗格
+<!--rehype:className=shortcuts-->
+
+### Window (Tabs)
+<!--rehype:wrap-class=row-span-2-->
+
+快捷键/命令 | 描述
+:- | -
+`Ctrl+b` `c`         | 创建窗口
+`Ctrl+b` `p` _/_ `n` | 上一个/下一个窗口
+`Ctrl+b` `"` _/_ `%` | 水平分割/垂直
+`Ctrl+b` `w`         | 列表窗口
+`Ctrl+b` `,`         | 重命名窗口
+`Ctrl+b` `f`         | 查找窗口
+`Ctrl+b` `l`         | 最后一个窗口
+`Ctrl+b` `.`         | 移动窗口
+`Ctrl+b` `&`         | 关闭窗口
+`Ctrl+b` `0`...`9`   | 转到#窗口
+<!--rehype:className=shortcuts-->
+
+### 会话（Windows 组）
+
+快捷键/命令 | 描述
+:- | -
+`Ctrl+b` `d`         | <red>从会话中分离</red>
+`Ctrl+b` `s`         | 显示所有会话
+`Ctrl+b` `$`         | 重命名会话
+`Ctrl+b` `(` _/_ `)` | 上一届/下一届
+<!--rehype:className=shortcuts-->
+
+Tmux 命令模式
+-----------
+
+### 用法
+<!--rehype:style=background:rgb(245 158 11/1);-->
+
+快捷键/命令 | 描述
+:- | -
+`Ctrl+b` `:` | 进入命令模式
+<!--rehype:className=shortcuts-->
+
+### 调整大小
+
+快捷键/命令 | 描述
+:- | -
+`resize-pane -D 20` | 缩小尺寸
+`resize-pane -U 20` | 调整大小
+`resize-pane -L 20` | 向左调整大小
+`resize-pane -R 20` | 向右调整大小
+
+### 清单
+
+快捷键/命令 | 描述
+:- | -
+`list-keys`    | 所有命令
+`list-panes`   | 所有窗格
+`list-windows` | 所有窗口
+
+### 复印
+
+快捷键/命令 | 描述
+:- | -
+`list-buffers`       | 列出所有缓冲区
+`show-buffer`        | 显示 #0 内容
+`capture-pane`       | 窗格的副本
+`choose-buffer`      | 显示和粘贴
+`save-buffer a.txt`  | 保存到文件
+`delete-buffer -b 1` | 删除缓冲区 1
+
+### 环境
+
+快捷键/命令 | 描述
+:- | -
+`set -g OPTION`        | 为所有会话设置
+`setw -g OPTION`       | 为所有窗口设置
+`setw -g mode-keys vi` | 启用 vi 模式
+`set -g prefix C-a`    | 设置前缀
+
+### 杂项
+
+快捷键/命令 | 描述
+:- | -
+`swap-pane -s 3 -t 1`    | 交换窗格
+`swap-window -t -1`      | 向左移动
+`setw synchronize-panes` | 同步窗格
+`join-pane -t :#`        | 加入窗格
+
+另见
+---
+
+- [Tmux 开源仓库](https://github.com/tmux/tmux) _(github.com)_
+- [Tmux Cheat Sheet & Quick Reference](https://tmuxcheatsheet.com/) _(tmuxcheatsheet.com)_
