@@ -1,8 +1,8 @@
 const isProd = Boolean(import.meta.env.PROD)
 
 export const site = {
-  url: 'https://devhints.io',
-  title: 'Devhints.io cheatsheets'
+  url: 'https://devshell.vercel.app',
+  title: 'devshell.vercel.app cheatsheets'
 } as const
 
 export const etc = {
@@ -31,7 +31,7 @@ export const urls = {
 export const carbon = {
   enabled: isProd,
   // src: 'https://cdn.carbonads.com/carbon.js?serve=CE7IK5QM&placement=devhintsio'
-  src: 'https://pubsrv.devhints.io/carbon.js?serve=CE7IK5QM&placement=devhintsio'
+  src: 'https://pubsrv.devshell.vercel.app/carbon.js?serve=CE7IK5QM&placement=devhintsio'
 } as const
 
 export const categories = [

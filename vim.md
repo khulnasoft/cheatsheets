@@ -852,7 +852,7 @@ dfx # 删除文本直到字符“x”(包括字符“x”): delete forward x
 
 - [搞得像IDE一样的 Vim](https://jaywcjlove.github.io/vim-web) _(github.io)_
 - [Vim 官方网站](http://www.vim.org/) _(vim.org)_
-- [Devhints](https://devhints.io/vim) _(devhints.io)_
+- [Devhints](https://devshell.vercel.app/vim) _(devshell.vercel.app)_
 - [Vim cheatsheet](https://vim.rtorr.com/lang/zh_cn/) _(vim.rotrr.com)_
 - [Vim documentation](http://vimdoc.sourceforge.net/htmldoc/) _(vimdoc.sourceforge.net)_
 - [Interactive Vim tutorial](http://openvim.com/) _(openvim.com)_

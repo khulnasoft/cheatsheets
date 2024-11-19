@@ -101,6 +101,6 @@ echo "@reboot echo hi" \| crontab
 另见
 ----
 
-- [Devhints](https://devhints.io/cron) _(devhints.io)_
+- [Devhints](https://devshell.vercel.app/cron) _(devshell.vercel.app)_
 - [Crontab Generator](https://crontab-generator.org/) _(crontab-generator.org)_
 - [Crontab guru](https://crontab.guru/) _(crontab.guru)_

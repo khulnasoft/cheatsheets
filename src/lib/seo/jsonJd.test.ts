@@ -19,7 +19,7 @@ it('works', () => {
         "description": "A React cheatsheet · One-page guide to React",
         "headline": "React cheatsheet",
         "image": [
-          "https://assets.devhints.io/previews/react.jpg",
+          "https://assets.devshell.vercel.app/previews/react.jpg",
         ],
         "mainEntityOfPage": {
           "@id": "https://google.com/article",
@@ -33,7 +33,7 @@ it('works', () => {
           {
             "@type": "ListItem",
             "item": {
-              "@id": "https://devhints.io/#javascript",
+              "@id": "https://devshell.vercel.app/#javascript",
               "name": "JavaScript",
             },
             "position": 1,
@@ -41,7 +41,7 @@ it('works', () => {
           {
             "@type": "ListItem",
             "item": {
-              "@id": "https://devhints.io/react",
+              "@id": "https://devshell.vercel.app/react",
               "name": "React cheatsheet",
             },
             "position": 2,

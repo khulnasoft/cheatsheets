@@ -1408,7 +1408,7 @@ Go 命令
 另见
 --------
 
-- [Devhints](https://devhints.io/go) *(devhints.io)*
+- [Devhints](https://devshell.vercel.app/go) *(devshell.vercel.app)*
 - [A tour of Go](https://tour.golang.org/welcome/1) *(tour.golang.org)*
 - [Golang wiki](https://github.com/golang/go/wiki/) *(github.com)*
 - [Effective Go](https://golang.org/doc/effective_go.html) *(golang.org)*

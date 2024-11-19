@@ -427,5 +427,5 @@ count(//*)          # 计算所有元素
 另见
 --------
 
-- [Devhints](https://devhints.io/xpath) _(devhints.io)_
+- [Devhints](https://devshell.vercel.app/xpath) _(devshell.vercel.app)_
 - [Xpath test bed](http://www.whitebeam.org/library/guide/TechNotes/xpathtestbed.rhtm) _(whitebeam.org)_

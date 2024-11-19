@@ -10,12 +10,12 @@ beforeEach(async () => {
 })
 
 test('has data', async () => {
-  expect(lines).toContain('<url><loc>https://devhints.io/react</loc></url>')
-  expect(lines).toContain('<url><loc>https://devhints.io/bash</loc></url>')
+  expect(lines).toContain('<url><loc>https://devshell.vercel.app/react</loc></url>')
+  expect(lines).toContain('<url><loc>https://devshell.vercel.app/bash</loc></url>')
 })
 
 test('skip unlisted sheets', async () => {
   expect(lines).not.toContain(
-    '<url><loc>https://devhints.io/tests/basic</loc></url>'
+    '<url><loc>https://devshell.vercel.app/tests/basic</loc></url>'
   )
 })

@@ -8,7 +8,7 @@ export function getSEOPropsForHome() {
     description: 'A ridiculous collection of web development cheatsheets'
   }
   const url = site.url
-  const image = 'https://assets.devhints.io/previews/index.jpg'
+  const image = 'https://assets.devshell.vercel.app/previews/index.jpg'
 
   return {
     title: t.title,
@@ -133,7 +133,7 @@ function denull(
 }
 
 export function getPageImage({ slug }: { slug: string }) {
-  return `https://assets.devhints.io/previews/${slug}.jpg`
+  return `https://assets.devshell.vercel.app/previews/${slug}.jpg`
 }
 
 export function getPageURL({ slug }: { slug: string }) {

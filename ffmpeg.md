@@ -752,6 +752,6 @@ $ ffmpeg -i "rtsp://127.0.0.1/test" -f mpegts -codec:v mpeg1video http://127.0.0
 
 - [FFmpeg 官网地址](https://ffmpeg.org/) _(ffmpeg.org)_
 - [FFmpeg Cheat Sheet](https://lzone.de/cheat-sheet/ffmpeg) _(lzone.de)_
-- [FFmpeg Cheat Sheet](https://devhints.io/ffmpeg) _(devhints.io)_
+- [FFmpeg Cheat Sheet](https://devshell.vercel.app/ffmpeg) _(devshell.vercel.app)_
 - [FFmpeg Cheat Sheet](https://github.com/yuanqing/ffmpeg-cheatsheet) _(github.com)_
 - [FFmpeg Cheat Sheet](https://cheatography.com/thetartankilt/cheat-sheets/ffmpeg/) _(cheatography.com)_

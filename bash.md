@@ -1188,7 +1188,7 @@ m           # 设置图形模式
 ----
 
 - [Shell 教程](https://jaywcjlove.github.io/shell-tutorial) _(jaywcjlove.github.io)_
-- [Devhints](https://devhints.io/bash) _(devhints.io)_
+- [Devhints](https://devshell.vercel.app/bash) _(devshell.vercel.app)_
 - [Bash-hackers wiki](http://wiki.bash-hackers.org/) _(bash-hackers.org)_
 - [Shell vars](http://wiki.bash-hackers.org/syntax/shellvars) _(bash-hackers.org)_
 - [Learn bash in y minutes](https://learnxinyminutes.com/docs/bash/) _(learnxinyminutes.com)_

@@ -293,4 +293,4 @@ wrap.containsAnyMatchingElements([ <div /> ]) // → boolean
 ## References
 
 - [Enzyme website](https://airbnb.io/enzyme) _(airbnb.io)_
-- [Enzyme v2 cheatsheet](./enzyme@2) _(devhints.io)_ (old version)
+- [Enzyme v2 cheatsheet](./enzyme@2) _(devshell.vercel.app)_ (old version)

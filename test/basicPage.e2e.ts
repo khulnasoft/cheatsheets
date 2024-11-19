@@ -26,7 +26,7 @@ test('/tests/basic', async ({ page }) => {
       '@id': 'https://google.com/article'
     },
     headline: 'Basic test cheatsheet',
-    image: ['https://assets.devhints.io/previews/tests/basic.jpg'],
+    image: ['https://assets.devshell.vercel.app/previews/tests/basic.jpg'],
     description:
       'The one-page guide to Basic test: usage, examples, links, snippets, and more.'
   })
@@ -39,13 +39,13 @@ test('/tests/basic', async ({ page }) => {
       {
         '@type': 'ListItem',
         position: 1,
-        item: { '@id': 'https://devhints.io/#hidden', name: 'Hidden' }
+        item: { '@id': 'https://devshell.vercel.app/#hidden', name: 'Hidden' }
       },
       {
         '@type': 'ListItem',
         position: 2,
         item: {
-          '@id': 'https://devhints.io/tests/basic',
+          '@id': 'https://devshell.vercel.app/tests/basic',
           name: 'Basic test cheatsheet'
         }
       }
